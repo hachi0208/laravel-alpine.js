@@ -24,6 +24,11 @@
             <header class="header">
                 <div class="header-content">
                     <h1 class="blog-title">Blog</h1>
+                     <div class="flex items-center space-x-20">
+                        <a href="{{ route('blogs.index') }}" class="home-link text-xl text-gray-700">ホーム</a>
+                        <a href="{{ route('blogs.create') }}" class="post-link text-xl text-gray-700">記事の投稿</a>
+                        <a href="{{ route('blogs.index') }}" class="user-page-link text-xl text-gray-700">ユーザーページ</a>
+                    </div>
                     @include('layouts.navigation')
                 </div>
             </header>

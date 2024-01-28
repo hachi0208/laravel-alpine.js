@@ -13,6 +13,7 @@ database https://laravel.com/docs/8.x/eloquent-relationships
 
 Eloquent のメソッド代表例　　https://qiita.com/asami___t/items/aabeb0d544f1e8680721
 ::query について　　https://qiita.com/fujita-goq/items/2279bb947ec4e7b103b2
+コントローラーの store について https://qiita.com/EasyCoder/items/e6ca6658ffcf08e6d912
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 

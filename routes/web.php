@@ -26,8 +26,14 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/', function () {
-    return view('blogs.index');
+Route::get('/scroll', function () {
+    return view('blogs.scroll');
 });
+
+Route::get('/', [BlogController::class, 'index'])->name('blogs.index');
+Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
+Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store');
+
+
+//param含むもの一番した
 Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
-Route::get('/pagenation', [BlogController::class, 'pagenation'])->name('blogs.pagenation');
