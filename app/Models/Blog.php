@@ -10,6 +10,11 @@ class Blog extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'body'
+    ];
+
     //tagsが逆参照でblog_tagがDBのからむめい
     public function tags()
     {

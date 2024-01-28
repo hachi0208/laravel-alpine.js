@@ -27,7 +27,9 @@
                      <div class="flex items-center space-x-20">
                         <a href="{{ route('blogs.index') }}" class="home-link text-xl text-gray-700">ホーム</a>
                         <a href="{{ route('blogs.create') }}" class="post-link text-xl text-gray-700">記事の投稿</a>
-                        <a href="{{ route('blogs.index') }}" class="user-page-link text-xl text-gray-700">ユーザーページ</a>
+                        @if(Auth::check())
+                            <a href="{{ route('user.profile', Auth::user()->id) }}" class="user-page-link text-xl text-gray-700">ユーザーページ</a>
+                        @endif
                     </div>
                     @include('layouts.navigation')
                 </div>
@@ -38,9 +40,12 @@
                 @yield('content')
             </main>
         </div>
-        <script src="{{ mix('js/app.js') }}"></script>
+
 
         {{-- 追加スクリプトのためのセクション --}}
+        {{-- app.jsが一番した!! --}}
+
         @yield('scripts')
+        <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>

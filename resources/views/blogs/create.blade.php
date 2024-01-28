@@ -25,7 +25,7 @@
         </div>
 
         <div class="mb-4">
-            <label for="tags" class="block text-gray-700 text-sm font-bold mb-2">タグ（shiftを押しながら複数選択してください）</label>
+            <label for="tags" class="block text-gray-700 text-sm font-bold mb-2">タグ</label>
             <select name="tags[]" id="tags" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" multiple>
                 @foreach(App\Models\Tag::all() as $tag)
                     <option value="{{ $tag->id }}">{{ $tag->tag_name }}</option>
