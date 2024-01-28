@@ -26,5 +26,8 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [BlogController::class, 'index'])->name('blogs.index');
+Route::get('/', function () {
+    return view('blogs.index');
+});
 Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
+Route::get('/pagenation', [BlogController::class, 'pagenation'])->name('blogs.pagenation');
