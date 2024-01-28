@@ -9,6 +9,7 @@ php artisan serve
 # めも
 
 公式入り口　https://laravel.com/docs/8.x
+https://alpinejs.dev/start-here
 database https://laravel.com/docs/8.x/eloquent-relationships
 
 Eloquent のメソッド代表例　　https://qiita.com/asami___t/items/aabeb0d544f1e8680721

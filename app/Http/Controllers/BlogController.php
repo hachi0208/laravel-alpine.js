@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
-use Illuminate\Http\Request;
 
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 
 
@@ -14,7 +16,7 @@ class BlogController extends Controller
     public function __construct()
     {
         //ログイン機能が必要な処理はここに記載
-        $this->middleware('auth')->only(['create', 'store']);
+        $this->middleware('auth')->only(['create', 'store', 'show', 'update', 'edit']);
     }
     /**
      * Display a listing of the resource.
@@ -113,7 +115,7 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        //
+        return view('blogs.edit', compact('blog'));
     }
 
     /**
@@ -125,7 +127,26 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        //
+        // バリデーション
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'body' => 'required',
+            'tags' => 'sometimes|array',//manytomanyだから複数入ることもある。だからこれがいる
+            'tags.*' => 'exists:tags,id'//複数ある要素のうち１つずつ検証
+        ]);
+
+        // タグデータを除外してブログを更新
+        $blogData = Arr::except($validatedData, ['tags']);
+        $blog->update($blogData);
+
+        // タグの更新（存在する場合）
+        if (isset($validatedData['tags'])) {
+            $blog->tags()->sync($validatedData['tags']);
+        }
+
+        // 更新後のリダイレクト
+        return redirect()->route('blogs.show', $blog->id)
+                        ->with('success', '記事が更新されました。');
     }
 
     /**
@@ -134,8 +155,10 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function apiDestroy(Blog $blog)
     {
-        //
+        $blog->delete();
+        // JSONレスポンスを返す
+        return response()->json(['success' => '記事が削除されました。']);
     }
 }

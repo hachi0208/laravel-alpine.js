@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\UserController;
+
 
 
 
@@ -33,7 +35,13 @@ Route::get('/scroll', function () {
 Route::get('/', [BlogController::class, 'index'])->name('blogs.index');
 Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
 Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store');
+Route::get('/blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
+Route::put('/blogs/{blog}/update', [BlogController::class, 'update'])->name('blogs.update');
 
 
 //param含むもの一番した
 Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
+
+
+//param含むもの一番した
+Route::get('/user/{id}', [UserController::class, 'profile'])->name('user.profile');
