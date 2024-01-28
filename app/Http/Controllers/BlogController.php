@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 
 
+
 class BlogController extends Controller
 {
     /**
@@ -14,7 +15,9 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+     //インフィニティスクロール
+    public function apiIndex()
     {
         $query = Blog::query();
 
@@ -25,7 +28,22 @@ class BlogController extends Controller
         }
 
         $blogs = $query->with('author', 'tags')->latest()->paginate(10);
-        return view('blogs.index', compact('blogs'));
+        return response()->json($blogs);
+    }
+
+    //pagenationとtagでフィルター
+    public function pagenation()
+    {
+        $query = Blog::query();
+
+        if ($tagId = request('tag')) {
+            $query->whereHas('tags', function ($query) use ($tagId) {
+                $query->where('tags.id', $tagId);
+            });
+        }
+
+        $blogs = $query->with('author', 'tags')->latest()->paginate(9);
+        return view('blogs.pagenation', compact('blogs'));
     }
 
     /**
