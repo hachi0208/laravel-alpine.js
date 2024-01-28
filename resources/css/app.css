@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header {
+    background-color: white;
+    margin-bottom: 30px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.blog-title {
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.username {
+    font-size: 1.5rem; /* テキストサイズを調整 */
+    font-weight: bold; /* 太字にする */
+    margin-right: 20px;
+}
+
+.logout-button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #4caf50; /* ボタンの背景色 */
+    color: white; /* テキスト色 */
+    text-decoration: none; /* 下線を消す */
+    border: none;
+    border-radius: 4px; /* 角を丸くする */
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.logout-button:hover {
+    background-color: #45a049; /* ホバー時の背景色 */
+}
+
+.login-link,
+.register-link {
+    padding: 0.5rem 1rem;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-link:hover,
+.register-link:hover {
+    background-color: #45a049;
+}
