@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
+
+    public function __construct()
+    {
+        //ログイン機能が必要な処理はここに記載
+        $this->middleware('auth')->only(['create', 'store']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -32,7 +38,7 @@ class BlogController extends Controller
     }
 
     //pagenationとtagでフィルター
-    public function pagenation()
+    public function index()
     {
         $query = Blog::query();
 
@@ -43,7 +49,7 @@ class BlogController extends Controller
         }
 
         $blogs = $query->with('author', 'tags')->latest()->paginate(9);
-        return view('blogs.pagenation', compact('blogs'));
+        return view('blogs.index', compact('blogs'));
     }
 
     /**
@@ -53,7 +59,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return view('blogs.create');
     }
 
     /**
@@ -64,7 +70,28 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'body' => 'required',
+            'tags' => 'sometimes|array',//manytomanyだから複数入ることもある。だからこれがいる
+            'tags.*' => 'exists:tags,id'//複数ある要素のうち１つずつ検証
+        ]);
+
+        // データの保存処理
+        $blog = new Blog();
+        $blog->title = $validatedData['title'];
+        $blog->body = $validatedData['body'];
+        $blog->author_id = auth()->id(); // 認証ユーザーのIDをセット
+        // その他のフィールドも同様にセット
+        $blog->save();
+
+        // タグの関連付け
+        if (isset($validatedData['tags'])) {
+            $blog->tags()->sync($validatedData['tags']);
+        }
+
+        // リダイレクト等の処理
+        return redirect()->route('blogs.index')->with('success', '記事が投稿されました。');
     }
 
     /**
