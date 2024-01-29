@@ -15,7 +15,6 @@
         <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->
 
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -25,6 +24,13 @@
             <header class="header">
                 <div class="header-content">
                     <h1 class="blog-title">Blog</h1>
+                     <div class="flex items-center space-x-20">
+                        <a href="{{ route('blogs.index') }}" class="home-link text-xl text-gray-700">ホーム</a>
+                        <a href="{{ route('blogs.create') }}" class="post-link text-xl text-gray-700">記事の投稿</a>
+                        @if(Auth::check())
+                            <a href="{{ route('user.profile', Auth::user()->id) }}" class="user-page-link text-xl text-gray-700">ユーザーページ</a>
+                        @endif
+                    </div>
                     @include('layouts.navigation')
                 </div>
             </header>
@@ -34,5 +40,12 @@
                 @yield('content')
             </main>
         </div>
+
+
+        {{-- 追加スクリプトのためのセクション --}}
+        {{-- app.jsが一番した!! --}}
+
+        @yield('scripts')
+        <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>

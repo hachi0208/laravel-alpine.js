@@ -57,3 +57,14 @@
 .register-link:hover {
     background-color: #45a049;
 }
+
+.custom-tag {
+    display: inline-block;
+    background-color: #bfdbfe;
+    color: #1e40af;
+    font-size: 1rem;
+    padding: 0.25rem 1rem;
+    border-radius: 100px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}

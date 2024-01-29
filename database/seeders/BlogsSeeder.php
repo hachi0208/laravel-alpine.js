@@ -16,6 +16,6 @@ class BlogsSeeder extends Seeder
     //factoryを使ってランダムに5個生成
     public function run()
     {
-        Blog::factory()->count(5)->create(); // 5つの記事を生成
+        Blog::factory()->count(40)->create(); // 5つの記事を生成
     }
 }

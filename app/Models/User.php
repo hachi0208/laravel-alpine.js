@@ -41,4 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // ユーザーが持つブログ記事のリレーション
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class, 'author_id');
+    }
 }
