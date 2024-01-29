@@ -25,12 +25,15 @@
         </div>
 
         <div class="mb-4">
-            <label for="tags" class="block text-gray-700 text-sm font-bold mb-2">タグ</label>
-            <select name="tags[]" id="tags" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" multiple>
+            <label class="block text-gray-700 text-sm font-bold mb-2">タグ</label>
+            <div class="grid grid-cols-3 gap-2">
                 @foreach(App\Models\Tag::all() as $tag)
-                    <option value="{{ $tag->id }}">{{ $tag->tag_name }}</option>
+                    <label class="flex items-center space-x-3">
+                        <input type="checkbox" name="tags[]" value="{{ $tag->id }}" class="form-checkbox h-5 w-5 text-blue-600">
+                        <span class="text-gray-700 text-sm">{{ $tag->tag_name }}</span>
+                    </label>
                 @endforeach
-            </select>
+            </div>
         </div>
 
         <div class="mb-4">
