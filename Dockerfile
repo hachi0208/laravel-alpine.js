@@ -1,11 +1,18 @@
 # PHP-FPM のイメージをベースに使用
 FROM php:8.0-fpm
 
-# Laravel が必要とする PHP 拡張機能をインストール
-RUN docker-php-ext-install pdo pdo_mysql
+# 必要なパッケージをインストール
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libzip-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# PHP の zip 拡張をインストール
+RUN docker-php-ext-install zip pdo pdo_mysql
 
 # Composer をインストール
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.0.8 /usr/bin/composer /usr/bin/composer
 
 # アプリケーションのソースコードをコピー
 COPY . /var/www
