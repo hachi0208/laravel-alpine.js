@@ -20,21 +20,30 @@ docker自体をあまり私は使ったことがないので動かない場合�
 # 動作説明
 
 ログインしなくてもできる作業
-- http://localhost:8000/、http://localhost:8000/scrollでのデータのget（これ以外はログインが必要です）
+- http://localhost:8000/
+- http://localhost:8000/scroll
 
-http://localhost:8000/、http://localhost:8000/scrollでは主にデータのgetのみを行っている。「続きを読む」を押せばその記事の続きが読める。
+  でのデータのget（これ以外はログインが必要です）
+
+localhost:8000/、localhost:8000/scrollでは主にデータのgetのみを行っている。「続きを読む」を押せばその記事の続きが読める。
 
 <img width="700" alt="スクリーンショット 2024-01-29 15 20 50" src="https://github.com/hachi0208/laravel-alpine.js/assets/114277057/0a0f1e2e-57d4-4118-81ee-74a4d2069608">
 
 <img width="700" alt="スクリーンショット 2024-01-29 15 22 12" src="https://github.com/hachi0208/laravel-alpine.js/assets/114277057/1293d082-e624-4873-a2ed-b6f306127113">
 
-ヘッダーの「記事の投稿」を押せば http://localhost:8000/blogs/create に遷移する。
+
+
+
+ヘッダーの「記事の投稿」を押せば localhost:8000/blogs/create に遷移する。
 
 ここで新しく記事を作成できる。
 
 <img width="700" alt="スクリーンショット 2024-01-29 15 23 28" src="https://github.com/hachi0208/laravel-alpine.js/assets/114277057/859718c8-27f8-477d-9227-21a3551309cc">
 
-ヘッダーの「ユーザーページ」を押せば http://localhost:8000/blogs/create に遷移する。
+
+
+
+ヘッダーの「ユーザーページ」を押せば localhost:8000/blogs/create に遷移する。
 ここで自分が作った記事について編集、削除できる。
 
 <img width="700" alt="スクリーンショット 2024-01-29 15 24 31" src="https://github.com/hachi0208/laravel-alpine.js/assets/114277057/8a1ec2e8-0977-49e6-995a-ced8e93d639c">
@@ -49,7 +58,6 @@ http://localhost:8000/、http://localhost:8000/scrollでは主にデータのget
 
 # アピールポイント
 
-- http://localhost:8000/scroll で下にスクロールするにつれデータをapiにとりに行く処理をalpine.jsを用いて作成した
 - ユーザーページであなたが投稿した記事一覧のところで削除ボタンを押した時にalpine.jsとlaravelのapiを用いて非同期処理を行い、リロードせずにデータを反映させた
 - DBの設計でuserとblogを１対多で構築、blogとtagを多対多で構築した
 
