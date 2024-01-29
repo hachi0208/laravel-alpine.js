@@ -1,10 +1,41 @@
 # 便利なコマンド
 
+## local で開発
+
 css、js の変化を検知。とりあえず動かしとく
 npm run watch
 
 立ち上げ
 php artisan serve
+
+## docker
+
+起動
+docker-compose up -d --build
+docker-compose exec app /bin/bash -c "./init.sh"
+
+再ビルドの際にキャッシュクリア
+docker-compose build --no-cache
+
+docker 内にアクセス
+docker compose exec app bash
+docker-compose exec db bash
+mysql -u root -p
+
+停止
+docker-compose.yml ファイルで定義されたサービス（コンテナ）を停止、削除も？
+docker compose down
+
+コンテナ止める
+docker stop d6d56dc8a528
+docker rm d6d56dc8a528
+
+image について
+docker images
+docker rmi <image_id_or_name>
+または全部消したいとき
+docker rmi $(docker images -q)
+docker rmi $(docker images -q) -f
 
 # めも
 
@@ -15,6 +46,8 @@ database https://laravel.com/docs/8.x/eloquent-relationships
 Eloquent のメソッド代表例　　https://qiita.com/asami___t/items/aabeb0d544f1e8680721
 ::query について　　https://qiita.com/fujita-goq/items/2279bb947ec4e7b103b2
 コントローラーの store について https://qiita.com/EasyCoder/items/e6ca6658ffcf08e6d912
+
+docker https://qiita.com/ucan-lab/items/56c9dc3cf2e6762672f4
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
