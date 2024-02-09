@@ -10,9 +10,7 @@
 
 ```docker-compose exec app /bin/bash -c "./init.sh"```
 
-これでlocalhost:8000で確認できると思います。私の環境では0からgit cloneしてこのコマンドで構築できました。
-
-docker自体をあまり私は使ったことがないので動かない場合は私に原因がある可能性が高いです。私のPCは M1 Mac です。
+これでlocalhost:8000で確認できると思います。
 
 また、seederを使って最初からデータを少し入れています。
 
